@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON轉換器</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="bodycon">
+        <h1>JSON轉換器</h1>
+        <div class="con">
+            <div>
+                <h2>JSON字串</h2>
+                <textarea id="jsonInput" rows="10" placeholder="請在這輸入JSON字串...." oninput="displayJson()"></textarea>
+                <h2>JSON轉換結果</h2>
+                <div id="errorOutput"></div>
+            </div>
+            <div style="margin-left: 50px;">
+                <div style="display: flex;align-items: center;">
+                    <h2>JSON解析結果</h2>
+                    <button id="copyBtn" onclick="copyJsonResult()">複製結果</button>
+                </div>
+                <div id="jsonOutput"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function displayJson() {
+            const jsonInput = document.getElementById('jsonInput').value;
+            const jsonOutput = document.getElementById('jsonOutput');
+            const errorOutput = document.getElementById('errorOutput');
+            const copyBtn = document.getElementById('copyBtn');
+
+            if (jsonInput != '') {
+                jsonOutput.classList.add('Output')
+                try {
+                    const parsedJson = JSON.parse(jsonInput);
+                    jsonOutput.innerHTML = '<pre>' + JSON.stringify(parsedJson, null, 2) + '</pre>';
+                    errorOutput.innerHTML = '語法正確';
+                    copyBtn.style.display = 'block';
+                } catch (error) {
+                    errorOutput.innerHTML = '語法錯誤';
+                    jsonOutput.innerHTML = '錯誤原因：' + error;
+                }
+            } else {
+                errorOutput.innerHTML = '';
+                jsonOutput.innerHTML = '';
+                jsonOutput.classList.remove('Output')
+            }
+        }
+
+        function copyJsonResult() {
+            const jsonOutput = document.getElementById('jsonOutput');
+            const range = document.createRange();
+            range.selectNode(jsonOutput);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+            alert('已複製JSON解析結果');
+        }
+    </script>
+</body>
+
+</html>
