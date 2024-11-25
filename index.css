@@ -1,59 +1,37 @@
-body {
-    font-family: 'Arial', sans-serif;
-}
-
-.bodycon{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    font-size: 1.2rem;
-    width: 80%;
-    margin: 20px auto;
-}
-
-textarea {
-    width: 800px;
-    height: 500px;
-    margin: 10px 0;
-    font-size: 1.5rem;
-    padding: 10px;
-}
-
-.con {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content:space-between;
-}
-
-.con button{
-    padding: 10px 30px;
-    height: 50%;
-    font-size: 1.2rem;
+#jsonInput,
+.json-output {
+    height: 400px;
+    /* 預設高度適用於中型螢幕 */
+    resize: none;
+    /* 禁止用戶調整大小 */
+    padding: 15px;
     border-radius: 5px;
-    margin-left: 20px;
-    background-color: #BFD8AF;
-    border: 1px solid #fff;
-    color: black;
-    cursor: pointer;
-    display: none;
 }
 
-#jsonOutput {
+@media (min-width: 768px) {
+
+    #jsonInput,
+    .json-output {
+        height: 500px;
+        /* 中等螢幕高度 */
+    }
+}
+
+@media (min-width: 1200px) {
+
+    #jsonInput,
+    .json-output {
+        height: 600px;
+        /* 大螢幕高度 */
+    }
+}
+
+.json-output {
+    overflow-y: auto;
+    /* 垂直滾動條 */
+    background-color: #E1F0DA;
+    border: 1px solid #ced4da;
+    font-size: 1rem;
     white-space: pre-wrap;
     color: green;
-    width: 800px;
-    padding: 0px 15px;
-    overflow-y: auto;
-    font-size: 1.5rem;
-}
-
-.Output{
-    background-color: #E1F0DA;
-}
-
-#errorOutput {
-    margin-top: 10px;
-    color: red;
 }
